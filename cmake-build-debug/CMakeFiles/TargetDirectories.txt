@@ -1,0 +1,3 @@
+/Users/rmu31/Uni-Workspace/C++Assingment/Server/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/Users/rmu31/Uni-Workspace/C++Assingment/Server/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/rmu31/Uni-Workspace/C++Assingment/Server/cmake-build-debug/CMakeFiles/Server.dir
