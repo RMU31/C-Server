@@ -101,7 +101,7 @@ cout << "==========THE SERVER===========" << endl;
             if (strcmp(receiveClientMessage, "QUIT")== 0) {
                 break;
             }
-            else if (strlen(receiveClientMessage) < 500) {
+            else if (strlen(receiveClientMessage) > 500) {
                 throw serverException;
             }
         }
@@ -116,19 +116,26 @@ cout << "==========THE SERVER===========" << endl;
         char sendClientMessage[500];
         printf("Please type in a reply to the client: ");
         cin.getline(sendClientMessage, 500);
-        int byteCount = send(clientSocket, sendClientMessage, 200, 0);
-        if (byteCount == -1)
-            cout << "There has been an error with the send function" << endl;
-        else
-            cout << "The message has been sent to the client successfully!" << endl;
-        if (strcmp(sendClientMessage, "QUIT")== 0) {
-            cout << "Server Socket if Closed" << endl;
-            close(serverSock);
+        try {
+            int byteCount = send(clientSocket, sendClientMessage, 200, 0);
+            if (byteCount == -1)
+                cout << "There has been an error with the send function" << endl;
+            else
+                cout << "The message has been sent to the client successfully!" << endl;
+            if (strcmp(sendClientMessage, "QUIT")== 0) {
+                cout << "Server Socket if Closed" << endl;
+                close(serverSock);
+                break;
+            }
+            else if (strlen(receiveClientMessage) > 500) {
+                throw serverException;
+            }
+        }
+        catch(ServerException e) {
+            cout << "Exception: " << e.what() << endl;
             break;
         }
     }
-
-
 
     return 0;
 }
